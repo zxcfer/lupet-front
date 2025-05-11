@@ -1,0 +1,397 @@
+{
+  "address": "41ERbSHwC8su7e59kyiQc39XYkCHRMQmjHQuPBsaq4J8",
+  "metadata": {
+    "name": "virtual_pet",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "earn_coins",
+      "discriminator": [
+        140,
+        94,
+        139,
+        60,
+        142,
+        2,
+        28,
+        235
+      ],
+      "accounts": [
+        {
+          "name": "pet",
+          "writable": true
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "pet"
+          ]
+        },
+        {
+          "name": "pet_coin_mint",
+          "writable": true
+        },
+        {
+          "name": "owner_token_account",
+          "writable": true
+        },
+        {
+          "name": "pet_coin_mint_authority"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "feed_pet",
+      "discriminator": [
+        178,
+        186,
+        190,
+        67,
+        17,
+        33,
+        124,
+        31
+      ],
+      "accounts": [
+        {
+          "name": "pet",
+          "writable": true
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "pet"
+          ]
+        },
+        {
+          "name": "feeder",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "item",
+          "writable": true
+        },
+        {
+          "name": "item_mint",
+          "writable": true
+        },
+        {
+          "name": "item_token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "_item_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "initialize_pet",
+      "discriminator": [
+        139,
+        68,
+        236,
+        151,
+        203,
+        178,
+        125,
+        46
+      ],
+      "accounts": [
+        {
+          "name": "pet",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "play_with_pet",
+      "discriminator": [
+        216,
+        101,
+        95,
+        96,
+        167,
+        216,
+        238,
+        155
+      ],
+      "accounts": [
+        {
+          "name": "pet",
+          "writable": true
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "pet"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "request_ownership",
+      "discriminator": [
+        92,
+        64,
+        238,
+        236,
+        143,
+        23,
+        53,
+        181
+      ],
+      "accounts": [
+        {
+          "name": "ownership_request",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "from",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "to"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "respond_to_request",
+      "discriminator": [
+        51,
+        25,
+        57,
+        77,
+        69,
+        171,
+        255,
+        28
+      ],
+      "accounts": [
+        {
+          "name": "ownership_request",
+          "writable": true
+        },
+        {
+          "name": "pet",
+          "writable": true
+        },
+        {
+          "name": "to",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "ownership_request"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "accept",
+          "type": "bool"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Item",
+      "discriminator": [
+        92,
+        157,
+        163,
+        130,
+        72,
+        254,
+        86,
+        216
+      ]
+    },
+    {
+      "name": "OwnershipRequest",
+      "discriminator": [
+        174,
+        211,
+        240,
+        210,
+        115,
+        121,
+        84,
+        12
+      ]
+    },
+    {
+      "name": "Pet",
+      "discriminator": [
+        180,
+        195,
+        178,
+        241,
+        61,
+        123,
+        238,
+        32
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "TooFrequentInteraction",
+      "msg": "Too frequent interaction"
+    },
+    {
+      "code": 6001,
+      "name": "TooFrequentCoinEarn",
+      "msg": "Too frequent coin earn"
+    },
+    {
+      "code": 6002,
+      "name": "NotItemOwner",
+      "msg": "Not the item owner"
+    }
+  ],
+  "types": [
+    {
+      "name": "Item",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "health_effect",
+            "type": "u8"
+          },
+          {
+            "name": "happiness_effect",
+            "type": "u8"
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OwnershipRequest",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "from",
+            "type": "pubkey"
+          },
+          {
+            "name": "to",
+            "type": "pubkey"
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "OwnershipStatus"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "OwnershipStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Pending"
+          },
+          {
+            "name": "Accepted"
+          },
+          {
+            "name": "Rejected"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "health",
+            "type": "u8"
+          },
+          {
+            "name": "happiness",
+            "type": "u8"
+          },
+          {
+            "name": "coins_earned",
+            "type": "u64"
+          },
+          {
+            "name": "last_interaction",
+            "type": "i64"
+          },
+          {
+            "name": "last_coin_earn",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ]
+}
