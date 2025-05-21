@@ -81,7 +81,7 @@ const PetSystem: FC = () => {
             setProgram(null);
             return;
           }
-          const programAddressString = (idl.metadata as any).address;
+          const programAddressString = (idl as any).address;
           if (typeof programAddressString !== 'string' || programAddressString.trim() === '') {
             console.error("IDL 'metadata.address' is missing, not a string, or empty. Check './idl/virtual_pet.json'.");
             setProvider(null);
